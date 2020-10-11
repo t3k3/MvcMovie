@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+    ms-sql-server1:
+        image: t3k3:mssql-server-mvc-core-ef-updated
+        container_name: ms-sql-server1
+        environment: 
+            ACCEPT_EULA: "Y"
+            MSSQL_SA_PASSWORD: "Pa9928word2020"
+            MSSQL_PID: Express
+        networks:
+            act_net:
+                ipv4_address: 172.31.1.2
+        ports: 
+            - "1433:1433"
+    mvc-movie1:
+        build: .
+        container_name: mvc-movie1
+        links: 
+            - ms-sql-server1:database
+        depends_on: 
+            - ms-sql-server1
+        networks:
+            act_net:
+                ipv4_address: 172.31.1.3
+        ports: 
+            - "8080:80"
+networks:
+    act_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.31.0.0/16
