@@ -13,6 +13,9 @@ services:
         ports: 
             - "1433:1433"
     mvc-movie1:
+        #Hazir image icin asagidaki kod kullanilacak "build: ." kalkacak
+        #image: t3k3/mvcmovie
+        #development icin bu sekilde kalacak
         build: .
         container_name: mvc-movie1
         links: 
