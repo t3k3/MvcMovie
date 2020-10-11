@@ -14,9 +14,9 @@ services:
             - "1433:1433"
     mvc-movie1:
         #Hazir image icin asagidaki kod kullanilacak "build: ." kalkacak
-        #image: t3k3/mvcmovie
+        image: t3k3/mvcmovie:netcore3.1
         #development icin bu sekilde kalacak
-        build: .
+        #build: .
         container_name: mvc-movie1
         links: 
             - ms-sql-server1:database
